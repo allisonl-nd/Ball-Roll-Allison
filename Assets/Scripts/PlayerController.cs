@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public Text countText;
     public Text winText;
+    // public AudioClip pickDing;
 
     private Rigidbody rb;
     private int count;
+    // private AudioSource audioSource;
 
     void Start ()
     {
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.CompareTag ("Pick Up"))
         {
             other.gameObject.SetActive (false);
+            // audioSource.PlayOneShot(pickDing, 1.0f);
             count = count + 1;
             SetCountText ();
         }
@@ -43,7 +46,7 @@ public class PlayerController : MonoBehaviour {
     void SetCountText ()
     {
         countText.text = "Count: " + count.ToString ();
-        if (count >= 12)
+        if (count >= 13)
         {
             winText.text = "You Win!";
         }
