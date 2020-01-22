@@ -8,11 +8,12 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public Text countText;
     public Text winText;
-    // public AudioClip pickDing;
+    public AudioClip pickupSound;
 
     private Rigidbody rb;
     private int count;
-    // private AudioSource audioSource;
+
+    AudioSource audio;
 
     void Start ()
     {
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour {
         count = 0;
         SetCountText ();
         winText.text = "";
+        audio = GetComponent<AudioSource>();
     }
 
     void FixedUpdate ()
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour {
         if (other.gameObject.CompareTag ("Pick Up"))
         {
             other.gameObject.SetActive (false);
-            // audioSource.PlayOneShot(pickDing, 1.0f);
+            audio.PlayOneShot(pickupSound);
             count = count + 1;
             SetCountText ();
         }
